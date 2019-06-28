@@ -66,12 +66,12 @@ def main():
     # Here are some tests...
     # 1. Print the 10 products New Zealand (nzl) has the highest RCA in.
     # 0204 = Sheep and Goat Meat
-    # print rcas.ix['nzl'].order(ascending=False).head(10)
+    print(rcas.ix['nzl'].sort_values(ascending=False).head(10))
     
     # Here are some tests...
     # 1. Print the 10 countries with the highest RCA in cars (8703).
     # SVK = Slovakia
-    # print rcas['8703'].order(ascending=False).head(10)
+    print(rcas['8703'].sort_values(ascending=False).head(10))
 
 
     ''' 
