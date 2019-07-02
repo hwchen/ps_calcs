@@ -60,3 +60,8 @@ def rca(tbl, populations=None):
   # rcas[rcas < 1] = 0
   
   return rcas
+
+if __name__ == "__main__":
+    tbl = pd.DataFrame({ 0: [1,2], 1: [3,4], 2:[5,6] })
+    print(tbl)
+    print(rca(tbl, None))

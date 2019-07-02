@@ -17,9 +17,9 @@
 """
 
 
-import MySQLdb, sys, argparse
-import pandas as pd, pandas.io.sql as sql
-import numpy as np
+#import MySQLdb, sys, argparse
+#import pandas as pd, pandas.io.sql as sql
+#import numpy as np
 # import growth package
 import growth
 
@@ -105,85 +105,85 @@ def get_rca_matrix(usable_countries, **kwargs):
     return mcp
 
 def main(**kwargs):
-  
-    '''get a list of usable countries by predetermined cutoffs'''
-    usable_countries = get_countries(**kwargs)
-    print len(usable_countries), "usable countries after cutoffs."
-
-    '''calculate RCAs'''
-    mcp = get_rca_matrix(usable_countries, **kwargs)
-    print
-    print "Matrix of RCAs:"
-    print mcp.shape
-
-    '''country complexity '''
-    eci = growth.complexity(mcp)[0]
-    '''product complexity'''
-    pci = growth.complexity(mcp)[1]
-    print
-    print "PCI & ECI (complexity):"
-    print pci.shape, eci.shape
-
-    '''calculate proximities'''
-    proximity = growth.proximity(mcp)
-    print
-    print "Product proximities:"
-    print proximity.shape
-
-    '''calculate distances'''
-    distances = growth.distance(mcp, proximity)
-    print
-    print "Distance matrix:"
-    print distances.shape
-
-    '''calculate opportunity gain'''
-    opp_gain = growth.opportunity_gain(mcp, proximity, pci)
-    print
-    print "Opportunity gain matrix:"
-    print opp_gain.shape
+  pass
+#    '''get a list of usable countries by predetermined cutoffs'''
+#    usable_countries = get_countries(**kwargs)
+#    print len(usable_countries), "usable countries after cutoffs."
+#
+#    '''calculate RCAs'''
+#    mcp = get_rca_matrix(usable_countries, **kwargs)
+#    print
+#    print "Matrix of RCAs:"
+#    print mcp.shape
+#
+#    '''country complexity '''
+#    eci = growth.complexity(mcp)[0]
+#    '''product complexity'''
+#    pci = growth.complexity(mcp)[1]
+#    print
+#    print "PCI & ECI (complexity):"
+#    print pci.shape, eci.shape
+#
+#    '''calculate proximities'''
+#    proximity = growth.proximity(mcp)
+#    print
+#    print "Product proximities:"
+#    print proximity.shape
+#
+#    '''calculate distances'''
+#    distances = growth.distance(mcp, proximity)
+#    print
+#    print "Distance matrix:"
+#    print distances.shape
+#
+#    '''calculate opportunity gain'''
+#    opp_gain = growth.opportunity_gain(mcp, proximity, pci)
+#    print
+#    print "Opportunity gain matrix:"
+#    print opp_gain.shape
   
 
 if __name__ == "__main__":
-    
-    '''Get command line arguments'''
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-db_user", "--db_user", help="DB user name", 
-                            default="root")
-    parser.add_argument("-db_pw", "--db_pw", help="DB password", default="")
-    parser.add_argument("-db_name", "--db_name", help="DB name", 
-                            default="atlas")
-    parser.add_argument("-pop", "--pop", help="Population cutoff to use", 
-                            type=int, default="1200000")
-    parser.add_argument("-val", "--val", help="Export value cutoff to use", 
-                            type=int, default="1000000000")
-    args = parser.parse_args()
-    
-    '''Try to set up database connection'''
-    try:
-        db = MySQLdb.connect (host = "localhost",
-                              user = args.db_user,
-                              passwd = args.db_pw,
-                              db = args.db_name)
-        db.autocommit(1)
-    except MySQLdb.Error, e:
-        print "Error %d: %s" % (e.args[0], e.args[1])
-        sys.exit(1)
-    
-    ''' Set the year of which data will be used '''
-    year = 2005 # any random year
-    print
-    print "Year:", year
-  
-    '''
-        The following are the cutoff imposed by the Atlas, population >1,200,000
-        and total export about > $1 Billion (see page 57)
-    '''
-    population_cutoff = args.pop
-    print "Population cutoff:", population_cutoff
-    
-    total_exports_cutoff = args.val
-    print "Total exports value cutoff:", total_exports_cutoff
-    print
-
-    main(db=db, year=year, pop_cut=population_cutoff, \
-            val_cut=total_exports_cutoff)
+    pass
+#    '''Get command line arguments'''
+#    parser = argparse.ArgumentParser()
+#    parser.add_argument("-db_user", "--db_user", help="DB user name", 
+#                            default="root")
+#    parser.add_argument("-db_pw", "--db_pw", help="DB password", default="")
+#    parser.add_argument("-db_name", "--db_name", help="DB name", 
+#                            default="atlas")
+#    parser.add_argument("-pop", "--pop", help="Population cutoff to use", 
+#                            type=int, default="1200000")
+#    parser.add_argument("-val", "--val", help="Export value cutoff to use", 
+#                            type=int, default="1000000000")
+#    args = parser.parse_args()
+#    
+#    '''Try to set up database connection'''
+#    try:
+#        db = MySQLdb.connect (host = "localhost",
+#                              user = args.db_user,
+#                              passwd = args.db_pw,
+#                              db = args.db_name)
+#        db.autocommit(1)
+#    except MySQLdb.Error, e:
+#        print "Error %d: %s" % (e.args[0], e.args[1])
+#        sys.exit(1)
+#    
+#    ''' Set the year of which data will be used '''
+#    year = 2005 # any random year
+#    print
+#    print "Year:", year
+#  
+#    '''
+#        The following are the cutoff imposed by the Atlas, population >1,200,000
+#        and total export about > $1 Billion (see page 57)
+#    '''
+#    population_cutoff = args.pop
+#    print "Population cutoff:", population_cutoff
+#    
+#    total_exports_cutoff = args.val
+#    print "Total exports value cutoff:", total_exports_cutoff
+#    print
+#
+#    main(db=db, year=year, pop_cut=population_cutoff, \
+#            val_cut=total_exports_cutoff)
