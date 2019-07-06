@@ -55,3 +55,13 @@ if __name__ == "__main__":
 
     my_proximity = proximity(my_rca)
     print(my_proximity)
+
+    # with zero and 
+    my_tbl = pd.DataFrame({ 0: [0,1], 1: [1,0], 2:[0,1] })
+    print(my_tbl)
+
+    my_rca = rca(my_tbl, None)
+    print(my_rca)
+
+    my_proximity = proximity(my_rca)
+    print(my_proximity)

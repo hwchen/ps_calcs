@@ -19,7 +19,7 @@
 import sys
 import pandas as pd
 # import product space calculations package
-from ps_calcs import rca
+from ps_calcs import rca, proximity, density
 
 
 def main():
@@ -83,9 +83,21 @@ def main():
     rcas[rcas >= 1] = 1
     rcas[rcas < 1] = 0
 
+    proximities = proximity(rcas)
+    densities = density(rcas, proximities)
+
     print("\nThe top 10 HS product codes that Brazil has RCA in:\n")
     print(rcas.loc["bra"].sort_values(ascending=False).head(10))
-    
+
+    print("\n Rcas")
+    print(rcas)
+
+    print("\n Proximities")
+    print(proximities)
+
+    print("\n Densities")
+    print(densities)
+
     print("\nCalculation run successfully! Read the source code to see what's going on.")
 
 if __name__ == "__main__":

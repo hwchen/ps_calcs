@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ''' Import statements '''
-from density import density
+from .density import density
 
 def distance(rcas, proximities):
   
